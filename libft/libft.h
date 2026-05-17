@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 13:58:05 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/04/17 23:27:18 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/17 19:11:13 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,21 @@
 # include <unistd.h>
 # include <stddef.h> //size_t
 
-int	ft_printf(const char *format, ...);
-int	print_str(char const *str);
-int	print_int(int n);
-int	print_unsigned(unsigned int nbr);
-int	print_hex(unsigned int nbr, int upper_case);
-int	print_ptr(void *adr);
+int		ft_printf(const char *format, ...);
+int		print_str(char const *str);
+int		print_int(int n);
+int		print_unsigned(unsigned int nbr);
+int		print_hex(unsigned int nbr, int upper_case);
+int		print_ptr(void *adr);
 
-int	ft_isdigit(int c);
-int	ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(long n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	error_exit(char *s);
+
+size_t	ft_strlen(const char *s);
 
 #endif

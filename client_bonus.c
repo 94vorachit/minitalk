@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 01:11:30 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/17 19:49:40 by vorhansa         ###   ########.fr       */
+/*   Created: 2026/05/17 19:54:11 by vorhansa          #+#    #+#             */
+/*   Updated: 2026/05/17 20:00:04 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static volatile sig_atomic_t	g_status = 0;
 static void	ack(int signal)
 {
 	(void)signal;
+	ft_printf("SEND\n");
 	g_status = 1;
 }
 
