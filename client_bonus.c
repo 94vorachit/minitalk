@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:54:11 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/17 20:00:04 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:15:04 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@
 #include <string.h>
 #include <sys/types.h>
 
-static volatile sig_atomic_t	g_status = 0;
+/*static volatile sig_atomic_t	g_status = 0;*/
+
+int	g_status = 0;
 
 static void	ack(int signal)
 {
-	(void)signal;
-	ft_printf("SEND\n");
+	static int	received = 0;
+
+	if (signal == SIGUSR1)
+		++received;
+	ft_printf("SEND: %d\n", received);
 	g_status = 1;
 }
 
@@ -67,7 +72,7 @@ int	send_signal(pid_t pid, unsigned char character)
 				return (0);
 		}
 		while (g_status != 1)
-			pause();
+			usleep(200);
 	}
 	return (1);
 }
@@ -82,7 +87,7 @@ static int	send_message(pid_t server_pid, const char *message)
 		if (!send_signal(server_pid, message[i++]))
 			return (0);
 	}
-	return (send_signal(server_pid, '\0'));
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -99,15 +104,12 @@ int	main(int ac, char **av)
 		ft_printf("PID ERROR\n");
 		exit (1);
 	}
-	if (signal(SIGUSR1, ack) == SIG_ERR)
-	{
-		ft_printf("SIGNAL ERROR\n");
-		exit (1);
-	}
+	signal(SIGUSR1, ack);
 	if (!send_message(server_pid, av[2]))
 	{
 		ft_printf("SEND MESSAGE ERROR\n");
 		exit (1);
 	}
+	ft_printf("MESSAGES: %d\n", ft_strlen(av[2]));
 	return (0);
 }

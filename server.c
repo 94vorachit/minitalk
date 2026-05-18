@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 01:11:27 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/17 19:39:00 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:53:11 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	main(void)
 	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
-	sigaddset(&sa.sa_mask, SIGUSR1);
-	sigaddset(&sa.sa_mask, SIGUSR2);
 	sa.sa_sigaction = &handle_signal;
 	sa.sa_flags = SA_SIGINFO;
 	ft_printf("PID : %d\n", getpid());

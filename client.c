@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 01:11:30 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/17 20:55:05 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:14:39 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <string.h>
 #include <sys/types.h>
 
-static volatile sig_atomic_t	g_status = 0;
+/*static volatile sig_atomic_t	g_status = 0;*/
+
+int	g_status = 0;
 
 static void	ack(int signal)
 {
@@ -66,7 +68,7 @@ int	send_signal(pid_t pid, unsigned char character)
 				return (0);
 		}
 		while (g_status != 1)
-			pause();
+			usleep(200);
 	}
 	return (1);
 }
@@ -98,11 +100,7 @@ int	main(int ac, char **av)
 		ft_printf("PID ERROR\n");
 		exit (1);
 	}
-	if (signal(SIGUSR1, ack) == SIG_ERR)
-	{
-		ft_printf("SIGNAL ERROR\n");
-		exit (1);
-	}
+	signal(SIGUSR1, ack);
 	if (!send_message(server_pid, av[2]))
 	{
 		ft_printf("SEND MESSAGE ERROR\n");

@@ -8,6 +8,21 @@ Minitalk is project about how to make process send message to each other by use 
 UNIX signals are a way for processes to communicate or handle events asynchronously. They act like software interrupts, notifying a process that an event has occurred. A process is an instance of a running program on a computer.
 When you run a program, the operating system creates a process that executes the program’s code. (and it’s allocated in RAM ), the process have a PROCESS ID that is uniq for each process , and the process can use files ,sockets ect . there is several types of process like (interactive process and daemon process (process that runs in the background without user interation)).
 
+### Allowed function
+- write()
+- ft_printf()
+- signal()
+- sigemptyset()
+- sigaddset()
+- sigaction()
+- kill()
+- getpid()
+- malloc()
+- free()
+- pause()
+- sleep()
+- usleep()
+- exit()
 
 ### Mandatory
 
@@ -16,15 +31,14 @@ When you run a program, the operating system creates a process that executes the
 
 # `Instrctions`
 
-### `Stack`
-
-### `Initialize`
-
 # `Resources`
+
+* Minitalk 42 project : [Guide](https://medium.com/@gamerazer007/minitalk-42-project-guide-be45d74f8dfa)
 
 # `Additional`
 
 * LIBFT
+* ft_printf
 
 ### AI Usage
 GitHub Copilot (GPT-5 mini backend) is used for
