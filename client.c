@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 01:11:30 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/18 18:14:39 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/19 03:45:46 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	send_message(pid_t server_pid, const char *message)
 		if (!send_signal(server_pid, message[i++]))
 			return (0);
 	}
-	return (send_signal(server_pid, '\0'));
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -106,5 +106,6 @@ int	main(int ac, char **av)
 		ft_printf("SEND MESSAGE ERROR\n");
 		exit (1);
 	}
+	send_signal(server_pid, '\0');
 	return (0);
 }

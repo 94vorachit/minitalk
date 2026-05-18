@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:07:23 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/17 19:33:57 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/19 01:38:28 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	error_exit(char *s)
 {
 	if (!s)
 		return ;
-	ft_putstr_fd(s, 2);
+	ft_printf("%s\n", s);
 	exit(1);
 }

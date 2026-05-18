@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:54:11 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/18 18:15:04 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/19 03:29:07 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	g_status = 0;
 static void	ack(int signal)
 {
 	static int	received = 0;
-
+	
 	if (signal == SIGUSR1)
 		++received;
-	ft_printf("SEND: %d\n", received);
+	ft_printf("SEND BIT: %d\n", received);
 	g_status = 1;
 }
 
@@ -110,6 +110,7 @@ int	main(int ac, char **av)
 		ft_printf("SEND MESSAGE ERROR\n");
 		exit (1);
 	}
-	ft_printf("MESSAGES: %d\n", ft_strlen(av[2]));
+	send_signal(server_pid, '\0');
+	ft_printf("MESSAGES: %d BYTES\n", ft_strlen(av[2]));
 	return (0);
 }

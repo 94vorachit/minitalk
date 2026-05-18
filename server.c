@@ -6,7 +6,7 @@
 /*   By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 01:11:27 by vorhansa          #+#    #+#             */
-/*   Updated: 2026/05/18 17:53:11 by vorhansa         ###   ########.fr       */
+/*   Updated: 2026/05/19 04:07:17 by vorhansa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_signal(int signal, siginfo_t *info, void *context)
 	static int				bit_index;
 
 	(void)context;
-	current_char = (current_char << 1) | (signal == SIGUSR1);
+	current_char |= (signal == SIGUSR1);
 	bit_index++;
 	if (bit_index == 8)
 	{
@@ -33,21 +33,25 @@ void	handle_signal(int signal, siginfo_t *info, void *context)
 		bit_index = 0;
 		current_char = 0;
 	}
-	(void)info;
+	else
+		current_char <<= 1;
 	if (kill(info->si_pid, SIGUSR1) == -1)
-		error_exit("SENDING ERROR");
+	{
+		ft_printf("SENDING ERROR\n");
+		exit (1);
+	}
 }
 
 int	main(void)
 {
-	struct sigaction	sa;
+	struct sigaction	s_sa;
 
-	sigemptyset(&sa.sa_mask);
-	sa.sa_sigaction = &handle_signal;
-	sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&s_sa.sa_mask);
+	s_sa.sa_sigaction = &handle_signal;
+	s_sa.sa_flags = SA_SIGINFO;
 	ft_printf("PID : %d\n", getpid());
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	sigaction(SIGUSR1, &s_sa, NULL);
+	sigaction(SIGUSR2, &s_sa, NULL);
 	while (1)
 		pause();
 	return (0);
