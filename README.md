@@ -25,15 +25,27 @@ When you run a program, the operating system creates a process that executes the
 - exit()
 
 ### Mandatory
-
-
+Create a communication program in the form of a client and a server.
+* The server must be started first. Upon launch, it must print its PID.
+* The client takes two parameters:
+	* The server PID.
+	* The string to send.
+* The client must send the specified string to the server.
+Once received, the server must print it.
+* The server must display the string without delay. If it seems slow, it is likely too slow.
+* Your server should be able to receive strings from several clients in a row without needing to restart.
+* Communication between the client and server must exclusively use UNIX signals
 ### Bonus
+* The server must acknowledge each received message by sending a signal to the client.
+* Unicode characters support.
 
 # `Instrctions`
 
 # `Resources`
 
 * Minitalk 42 project : [Guide](https://medium.com/@gamerazer007/minitalk-42-project-guide-be45d74f8dfa)
+* [Bitwise](https://youtu.be/c3sRgaH2zGA?si=4c73S0PDtVgi7qG_)
+* [Signal](https://www.youtube.com/watch?v=m6WXrC9Mxzo)
 
 # `Additional`
 
@@ -47,7 +59,3 @@ GitHub Copilot (GPT-5 mini backend) is used for
 * Discussed about logic, but is not usable enough.
 * Used for finding information about micro-optimization, techniques, coding convention.
 	* Circular stack implementation, what's the best practice to implement.
-
-
-The problem was the client’s wait loop. pause() can miss the ACK if the server responds before the client enters the sleep, so the message send can hang or behave unpredictably. I fixed that in client.c by blocking SIGUSR1 and waiting with sigsuspend(), which makes the ACK handshake atomic.
-

@@ -6,7 +6,7 @@
 #    By: vorhansa <vorhansa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/17 13:41:24 by vorhansa          #+#    #+#              #
-#    Updated: 2026/05/17 19:09:33 by vorhansa         ###   ########.fr        #
+#    Updated: 2026/05/18 18:35:58 by vorhansa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)ft_putchar_fd
+	rm -f $(NAME)
 
 re: fclean all
 
